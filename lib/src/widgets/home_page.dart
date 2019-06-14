@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_components_wigets_use_examples/src/providers/menu_provider.dart';
 import 'package:flutter_components_wigets_use_examples/src/utils/icon_string_util.dart';
-import 'package:flutter_components_wigets_use_examples/src/widgets/alert_page.dart';
 
 class HomePage extends StatelessWidget {
 

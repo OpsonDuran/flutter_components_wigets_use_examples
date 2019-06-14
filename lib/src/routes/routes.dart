@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_components_wigets_use_examples/src/widgets/alert_page.dart';
 import 'package:flutter_components_wigets_use_examples/src/widgets/avatar_file.dart';
+import 'package:flutter_components_wigets_use_examples/src/widgets/card_page.dart';
 import 'package:flutter_components_wigets_use_examples/src/widgets/home_page.dart';
 
 Map<String,WidgetBuilder> getApplicationRoutes(){
@@ -9,6 +10,7 @@ Map<String,WidgetBuilder> getApplicationRoutes(){
         '/' : (BuildContext context) => HomePage(),
         'alert' : (BuildContext context) => AlertPage(),
         'avatar' : (BuildContext context) => AvatarPage(),
+        'card' : (BuildContext context) => CardPage(),
   };
 }
 
