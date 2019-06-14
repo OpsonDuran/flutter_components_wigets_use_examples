@@ -48,7 +48,7 @@ class CardPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               FlatButton(
-                child: Text('Cancelar'),
+                child: Text('Cancel'),
                 onPressed: () {},
               ),
               FlatButton(
@@ -83,7 +83,13 @@ class CardPage extends StatelessWidget {
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(30.0),
-          boxShadow: <BoxShadow>[BoxShadow(color: Colors.black26, blurRadius: 10.0,spreadRadius: 2.0,offset: Offset(2.0,10.0))]),
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+                color: Colors.black26,
+                blurRadius: 10.0,
+                spreadRadius: 2.0,
+                offset: Offset(2.0, 10.0))
+          ]),
       child: ClipRRect(borderRadius: BorderRadius.circular(30.0), child: card),
     );
   }
