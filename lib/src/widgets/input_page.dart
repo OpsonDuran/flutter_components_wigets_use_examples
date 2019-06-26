@@ -8,6 +8,7 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
 String _name;
+String _email;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,10 @@ String _name;
          children: <Widget>[
            _createInput(),
            Divider(),
+           _createEmail(),
+           Divider(),
+           _createPassword(),
+           Divider(),
            _createPerson(),
          ],
        ),
@@ -29,13 +34,12 @@ String _name;
 
 Widget _createInput(){
   return TextField(
-    // autofocus: true,
     textCapitalization: TextCapitalization.sentences,
     decoration: InputDecoration(
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(20.0)
       ),
-      counter: Text('Letter 0'),
+      counter: Text('Letters : ${ _name }'),
       hintText: 'First Name',
       labelText: 'Name',
       helperText: 'first name complete',
@@ -47,15 +51,58 @@ Widget _createInput(){
       setState(() {
       _name =value;
       });
-      print( _name );
+    },
+  ); 
+}
+
+
+Widget _createEmail(){
+  return TextField(
+    keyboardType: TextInputType.emailAddress,
+    decoration: InputDecoration(
+        border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(20.0)
+      ),
+      hintText: 'email@dom.com',
+      labelText: 'Email',
+      suffixIcon: Icon(Icons.alternate_email),
+      icon: Icon(Icons.email)
+
+    ),
+    onChanged: (value){
+      setState(() {
+      _email =value;
+      });
     },
   );
 }
+
+Widget _createPassword(){
+  return TextField(
+    obscureText: true,
+    decoration: InputDecoration(
+        border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(20.0)
+      ),
+      hintText: 'Password',
+      labelText: 'Passowrd',
+      suffixIcon: Icon(Icons.lock_open),
+      icon: Icon(Icons.lock)
+
+    ),
+    onChanged: (value){
+      setState(() {
+        print(value);
+      });
+    },
+  );}
 
 Widget _createPerson(){
   return ListTile(
     
     title: Text('Name is: $_name'),
+    subtitle: Text('Email is : $_email'),
   );
 }
+
 }
