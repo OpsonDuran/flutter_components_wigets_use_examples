@@ -44,7 +44,7 @@ Widget _createInput(){
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(20.0)
       ),
-      counter: Text('Letters : ${ _name.length }'),
+      counter: Text('Letters : ${ _name }'),
       hintText: 'First Name',
       labelText: 'Name',
       helperText: 'first name complete',
@@ -130,6 +130,7 @@ _selectDate(BuildContext contex)async{
     initialDate: DateTime.now(),
     firstDate: DateTime(2019),
     lastDate: DateTime(2025),
+    locale: Locale('es'),
   );
 
   if(picked!=null){
