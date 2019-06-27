@@ -10,6 +10,8 @@ class _InputPageState extends State<InputPage> {
 String _name;
 String _email;
 String _date;
+String _optionValues = 'item1';
+List<String> _items = ['item1','item2','item3','item4'];
 TextEditingController _inputFieldDateController = TextEditingController();
 
 
@@ -29,6 +31,8 @@ TextEditingController _inputFieldDateController = TextEditingController();
            _createPassword(),
            Divider(),
            _createDate(context),
+           Divider(),
+           _createDropDown(context),
            Divider(),
            _createPerson(),
          ],
@@ -59,7 +63,6 @@ Widget _createInput(){
     },
   ); 
 }
-
 
 Widget _createEmail(){
   return TextField(
@@ -141,10 +144,35 @@ _selectDate(BuildContext contex)async{
   }
 }
 
+List<DropdownMenuItem<String>> getOptionsDropDown(){
+  List<DropdownMenuItem<String>> listItems = new List();
+  _items.forEach((item){
+    listItems.add( DropdownMenuItem(
+      child: Text(item),
+      value: item,
+    ));
+  });
+
+  return listItems;
+}
+
+Widget _createDropDown(BuildContext context){
+  return DropdownButton(
+    value: _optionValues,
+    items: getOptionsDropDown(),
+    onChanged: (opt){
+      setState(() {
+        _optionValues = opt;
+      });
+    },
+  ); 
+}
+
 Widget _createPerson(){
   return ListTile(
     title: Text('Name is: $_name'),
     subtitle: Text('Email is : $_email'),
+    trailing: Text(_optionValues),
   );
 }
 
