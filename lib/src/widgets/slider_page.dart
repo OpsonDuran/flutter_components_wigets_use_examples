@@ -10,6 +10,7 @@ class _SliderPageState extends State<SliderPage> {
 
   double _valueSlider = 100;
   bool _checkStatus = false;
+  String _status = "inactive";
 
   @override
   Widget build(BuildContext context) {
@@ -51,11 +52,12 @@ class _SliderPageState extends State<SliderPage> {
   Widget _createCheckBox(){
 
     return CheckboxListTile(
-      title: Text("off slider"),
+      title: Text("${_status} slider"),
       value: _checkStatus,
       onChanged: (value){
         setState(() {
           _checkStatus = value;
+          _status = (_checkStatus)?"Active":"Inactive";
         });
       },
     );
@@ -63,11 +65,12 @@ class _SliderPageState extends State<SliderPage> {
 
   Widget _createSwitch(){
     return SwitchListTile(
-      title: Text('off slider switch'),
+      title: Text('${_status} slider switch'),
       value: _checkStatus,
       onChanged: (value){
         setState(() {
           _checkStatus = value;
+          _status = (_checkStatus)?"Active":"Inactive";
         });
       },
     );
