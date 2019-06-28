@@ -30,6 +30,11 @@
             "ruta" : "slider",
             "icon" : "slider_icon",
             "texto": "Slider Page"
+        },
+        {
+            "ruta" : "listview",
+            "icon" : "listview_icon",
+            "texto": "ListView Page"
         }
     ]
 }

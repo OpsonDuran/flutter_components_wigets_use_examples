@@ -7,6 +7,7 @@ final _icons =<String,IconData>{
   'donut_large': Icons.donut_large,
   'input_icon': Icons.input,
   'slider_icon': Icons.tune,
+  'listview_icon':Icons.list,
 };
 
 Icon getIcon(String iconName){
