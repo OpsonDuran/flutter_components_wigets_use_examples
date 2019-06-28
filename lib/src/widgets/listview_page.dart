@@ -51,16 +51,19 @@ class _ListViewPageState extends State<ListViewPage> {
   }
 
   Widget _createListView(){
-    return ListView.builder(
-      controller: _scrollController,
-      itemCount: _numberList.length,
-      itemBuilder: (BuildContext context, int index){
-        final imagen = _numberList[index];
-        return FadeInImage(
-          image:NetworkImage("https://picsum.photos/id/$imagen/500/300"),
-          placeholder: AssetImage('assets/jar-loading.gif'),
-          );
-      },
+    return RefreshIndicator(
+      onRefresh: getPageOne,
+          child: ListView.builder(
+        controller: _scrollController,
+        itemCount: _numberList.length,
+        itemBuilder: (BuildContext context, int index){
+          final imagen = _numberList[index];
+          return FadeInImage(
+            image:NetworkImage("https://picsum.photos/id/$imagen/500/300"),
+            placeholder: AssetImage('assets/jar-loading.gif'),
+            );
+        },
+      ),
     );
   }
 
@@ -101,13 +104,23 @@ class _ListViewPageState extends State<ListViewPage> {
       return new Timer(duration, responseHttp);
   }
 
+  Future<Null> getPageOne() async{
+    final duration = new Duration(seconds: 2);
+    new Timer(duration, (){
+    _numberList.clear();
+    _endItemImage++;
+    _addMoreImageItems();
+    });
+    return Future.delayed(duration);
+  }
+
   void responseHttp(){
     _isLoading = false;
 
     _scrollController.animateTo(
-      _scrollController.position.pixels + 150,
+      _scrollController.position.pixels + 300,
       curve: Curves.fastOutSlowIn,
-      duration: Duration(milliseconds: 200)
+      duration: Duration(milliseconds: 300)
     );
     _addMoreImageItems();
 
