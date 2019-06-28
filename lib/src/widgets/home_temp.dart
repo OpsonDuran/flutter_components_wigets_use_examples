@@ -46,7 +46,5 @@ List<Widget> _createIntemsShort(){
       );
   }).toList();
 
-}
-
-  
+}  
 }

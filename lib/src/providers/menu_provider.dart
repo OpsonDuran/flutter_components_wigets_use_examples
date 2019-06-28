@@ -4,7 +4,7 @@ import 'package:flutter/services.dart' show rootBundle;
 class _MenuProvider{
   List<dynamic> options = [];
 
-  _MenuProvider(){}
+  _MenuProvider();
     
     Future<List<dynamic>> loadingData() async {
 
