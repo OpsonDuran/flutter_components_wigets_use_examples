@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class ListViewPage extends StatefulWidget {
@@ -11,6 +13,7 @@ class _ListViewPageState extends State<ListViewPage> {
   ScrollController _scrollController = new ScrollController();
   List<int> _numberList= new List();
   int _endItemImage = 0;
+  bool _isLoading = false;
 
   @override
   void initState() {
@@ -19,10 +22,17 @@ class _ListViewPageState extends State<ListViewPage> {
 
     _scrollController.addListener((){
       if(_scrollController.position.pixels == _scrollController.position.maxScrollExtent){
-        _addMoreImageItems();
+        fetchData();
       }
     }
     );
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _scrollController.dispose();
   }
 
   @override
@@ -31,7 +41,12 @@ class _ListViewPageState extends State<ListViewPage> {
       appBar: AppBar(
         title: Text('ListView Page'),
       ),
-      body:_createListView(),
+      body:Stack(
+        children: <Widget>[
+          _createListView(),
+          _createLoading(),
+        ],
+      )
     );
   }
 
@@ -49,6 +64,25 @@ class _ListViewPageState extends State<ListViewPage> {
     );
   }
 
+  Widget _createLoading(){
+    if(_isLoading){
+      return  Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              CircularProgressIndicator(),
+            ],
+          ),
+          SizedBox(height: 15.0,)
+        ],
+      );
+    }else{
+      return Container();
+    }
+  }
 
   void _addMoreImageItems(){
     for (var i = 1; i < 10; i++) {
@@ -58,5 +92,24 @@ class _ListViewPageState extends State<ListViewPage> {
     setState(() {
       
     });
+  }
+
+  Future<Null> fetchData() async{
+    _isLoading = true;
+    setState(() {});
+    final duration = new Duration(seconds: 2);
+      return new Timer(duration, responseHttp);
+  }
+
+  void responseHttp(){
+    _isLoading = false;
+
+    _scrollController.animateTo(
+      _scrollController.position.pixels + 150,
+      curve: Curves.fastOutSlowIn,
+      duration: Duration(milliseconds: 200)
+    );
+    _addMoreImageItems();
+
   }
 }
